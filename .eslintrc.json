@@ -1,0 +1,6 @@
+{
+  "extends": "@rocketseat/eslint-config/react",
+  "rules": {
+    "no-unused-vars": "off" // Desabilita os erros mostrados quando variáveis não estão sendo utilizadas.
+  }
+}
