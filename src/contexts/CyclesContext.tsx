@@ -1,10 +1,9 @@
 import {
-  ActionTypes,
   addNewCycleAction,
   interruptCurrentCycleAction,
   markCurrentCycleAsFinishedAction,
 } from '../reducers/cycles/actions'
-import { ciclesReducer, Cycle } from '../reducers/cycles/reducer'
+import { cyclesReducer, Cycle } from '../reducers/cycles/reducer'
 import {
   createContext,
   ReactNode,
@@ -39,22 +38,10 @@ interface CyclesContextProviderProps {
 export function CyclesContextProvider({
   children,
 }: CyclesContextProviderProps) {
-  const [cyclesState, dispatch] = useReducer(
-    ciclesReducer,
-    {
-      cycles: [],
-      activeCycleId: null,
-    },
-    () => {
-      const storedStateAsJSON = localStorage.getItem(
-        '@ignite-timer:cycles-state-1.0.0',
-      )
-
-      if (storedStateAsJSON) {
-        return JSON.parse(storedStateAsJSON)
-      }
-    },
-  )
+  const [cyclesState, dispatch] = useReducer(cyclesReducer, {
+    cycles: [],
+    activeCycleId: null,
+  })
 
   const { cycles, activeCycleId } = cyclesState
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
